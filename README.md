@@ -5,7 +5,7 @@ Docker ComposeによるLaravelの開発環境（MySQL+phpMyAdmin）
 ## ファイルの設定
 1. 任意のディレクトリでクローン
 ```
-git clone https://github.com/e-value/project_templae.git
+git clone https://github.com/e-value/project_template.git
 ```
 
 2. `project_template`を開発するプロジェクト名に変更
