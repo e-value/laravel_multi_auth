@@ -11,6 +11,17 @@ ADD 000-default.conf /etc/apache2/sites-enabled/
 # RUN：コンテナ内でコマンド実行する
 RUN cd /usr/bin && curl -s http://getcomposer.org/installer | php && ln -s /usr/bin/composer.phar /usr/bin/composer
 
+# Node.jsをインストール
+RUN curl -sL https://deb.nodesource.com/setup_12.x | bash -
+RUN apt-get install -y nodejs
+
+# インポートを可能にする。
+RUN apt-get update
+RUN apt-get -y install libzip-dev
+RUN docker-php-ext-install zip && apt-get install -y wget git unzip libpq-dev libfreetype6-dev libjpeg62-turbo-dev libpng-dev
+RUN apt-get update && apt-get install -y libzip-dev libpng-dev && docker-php-ext-install zip gd
+
+
 # ミドルウェアのインストール
 RUN apt-get update \
 && apt-get install -y \
@@ -20,7 +31,10 @@ unzip \
 vim \
 libpng-dev \
 libpq-dev \
-&& docker-php-ext-install pdo_mysql
+cron \
+&& docker-php-ext-install pdo_mysql \
+&& docker-php-ext-configure gd --with-freetype --with-jpeg \
+&& docker-php-ext-install -j$(nproc) gd
 
 # Laravelで必要になるmodRewriteを有効化する
 RUN mv /etc/apache2/mods-available/rewrite.load /etc/apache2/mods-enabled
