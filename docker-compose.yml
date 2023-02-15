@@ -14,7 +14,7 @@ services:
    # 先ほど作ったDockerfileを使って、コンテナをビルドするという指定
    build: ./docker/app
    # コンテナの名前を指定
-   container_name: project_name_app
+   container_name: multi-auth_app
    # ローカルのディレクトリとコンテナ上のディレクトリのリンクを設定
    # ./src は docker-composer.yml のディレクトリ直下にある src を設定している
    # コンテナが作成されると src ディレクトリからコンテナの /var/www/html にアクセスすることができる
@@ -27,13 +27,13 @@ services:
  db:
    # Docker HubからMySQL5.7の公式イメージをダウンロードしてくる指定
    image: mysql:5.7
-   container_name: project_name_db
+   container_name: multi-auth_db
 
    # コンテナ内の環境変数を指定。環境変数を渡すとビルド時に設定してくれるDockerイメージがあるので、利用の際はDocker Hubのサイトで確認する
    environment:
      MYSQL_ROOT_PASSWORD: root
      #  データベース名
-     MYSQL_DATABASE: project_name
+     MYSQL_DATABASE: multi-auth
      MYSQL_USER: laravel_user
      MYSQL_PASSWORD: laravel_pass
      TZ: 'Asia/Tokyo'
@@ -55,7 +55,7 @@ services:
   image: phpmyadmin/phpmyadmin:5
 
   # コンテナの名前
-  container_name: project_name_phpmyadmin
+  container_name: multi-auth_phpmyadmin
 
   # コンテナと他のサービスを繋げる
   links:

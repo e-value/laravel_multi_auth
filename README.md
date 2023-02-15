@@ -11,23 +11,23 @@ git clone https://github.com/e-value/project_template.git
 2. `project_template`を開発するプロジェクト名に変更
 
 3. 変更したプロジェクトのディレクトリに移動\
-    `cd project_name`
+    `cd multi-auth`
 
-4. VSCODEで起動し、`docker/app/000-default.`の2ヶ所の`project_name`を作成するプロジェクト名に変更
+4. VSCODEで起動し、`docker/app/000-default.`の2ヶ所の`multi-auth`を作成するプロジェクト名に変更
 
-5. `docker-compose.yml`の`MYSQL_DATABASE`の`project_name`を作成するプロジェクト名に変更
+5. `docker-compose.yml`の`MYSQL_DATABASE`の`multi-auth`を作成するプロジェクト名に変更
 
 ```
-MYSQL_DATABASE: project_name
+MYSQL_DATABASE: multi-auth
 MYSQL_USER: laravel_user
 MYSQL_PASSWORD: laravel_pass
 ```
-6. `docker-compose.yml`の`container_name`の`project_name`を作成するプロジェクト名に変更
+6. `docker-compose.yml`の`container_name`の`multi-auth`を作成するプロジェクト名に変更
 
 ```
-container_name: project_name_app
-container_name: project_name_db
-container_name: project_name_phpmyadmin
+container_name: multi-auth_app
+container_name: multi-auth_db
+container_name: multi-auth_phpmyadmin
 
 ```
 ## ビルドと起動
@@ -47,24 +47,24 @@ docker compose exec app bash
 ```
 
 ## プロジェクト作成
-10. ※project_nameは作成するproject名
+10. ※multi-authは作成するproject名
 
 ```
 composer create-project --prefer-dist laravel/laravel project-name "8.*"
 ```
 
 11. プロジェクトの作業フォルダに入る\
-    `cd project_name`
+    `cd multi-auth`
 
 ## .env設定
 
 12. `.env`を以下のように編集する\
-    ※project_nameには作成したプロジェクト名
+    ※multi-authには作成したプロジェクト名
 ```
 DB_CONNECTION=mysql 
-DB_HOST=project_name_db 
+DB_HOST=multi-auth_db 
 DB_PORT=3306 
-DB_DATABASE=project_name
+DB_DATABASE=multi-auth
 DB_USERNAME=laravel_user 
 DB_PASSWORD=laravel_pass
 ```
@@ -91,7 +91,7 @@ docker compose up -d
 docker compose exec app bash
 ```
 ```
-cd project_name
+cd multi-auth
 ```
-※project_nameは開発したプロジェクト名
+※multi-authは開発したプロジェクト名
 
