@@ -22,6 +22,12 @@ Auth::routes();
 
 // Route::get('/home', [App\Http\Controllers\HomeController::class,, 'index']'])->name('home');
 
+// Admin 新規登録
+Route::group(['prefix' => 'admin'], function () {
+    Route::get('register', [App\Http\Controllers\Admin\Auth\RegisterController::class, 'showRegisterForm'])->name('admin.register');
+    Route::post('register', [App\Http\Controllers\Admin\Auth\RegisterController::class, 'register']);
+});
+
 // Admin ログイン
 Route::group(['prefix' => 'admin'], function() {
     Route::get('login', [App\Http\Controllers\Admin\Auth\LoginController::class, 'showLoginForm'])->name('admin.login');
