@@ -94,6 +94,7 @@ class RegisterController extends Controller
     public function register(Request $request)
     {
       $this->validator($request->all())->validate();
+      $this->create($request->all());
       return view('admin.home');
     }
 }
